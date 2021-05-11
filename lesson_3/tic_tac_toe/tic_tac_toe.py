@@ -55,27 +55,24 @@ def show_game(ttt):
 
 def user_input(ttt, user):
     x = ''
-    while len(x) != 3:
-        print('Enter your pos:')
+    while len(x) == 0:
+        print('Enter your pos (x,y):')
         x = input()
-        if len(x) == 3:
-            if re.search('[0-2],[0-2]', x):
-                if ttt[int(x[0])][int(x[2])] == 0:
-                    ttt[int(x[0])][int(x[2])] = user
-                    winner = check_win(ttt)
-                    show_game(ttt)
-                    if winner > 0:
-                        print('Winner is player %s' % winner)
-                        return True
-                    elif winner < 0:
-                        return False
-                    else:
-                        print('It is a draw game.')
-                        return True
+        if re.search('^[0-2],[0-2]$', x):
+            if ttt[int(x[0])][int(x[2])] == 0:
+                ttt[int(x[0])][int(x[2])] = user
+                winner = check_win(ttt)
+                show_game(ttt)
+                if winner > 0:
+                    print('Winner is player %s' % winner)
+                    return True
+                elif winner < 0:
+                    return False
                 else:
-                    print('It is not spare.')
-                    x = ''
+                    print('It is a draw game.')
+                    return True
             else:
+                print('It is not spare.')
                 x = ''
         else:
             x = ''

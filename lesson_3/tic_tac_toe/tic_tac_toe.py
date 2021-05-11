@@ -75,6 +75,8 @@ def user_input(ttt, user):
                 else:
                     print('It is not spare.')
                     x = ''
+            else:
+                x = ''
         else:
             x = ''
 
